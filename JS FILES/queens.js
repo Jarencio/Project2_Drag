@@ -1,4 +1,4 @@
-function updateSeasonRange() {
+function updateSeasonRange(id) {
     console.log("Sfdgcbc");
     // Get the selected franchise option
     var selectedOption = document.getElementById('SName').selectedOptions[0];
@@ -44,6 +44,11 @@ $(document).ready(function() {
 
     };
 
+    const AddSeason = () => {
+        console.log("WORKING");
+        document.getElementById("Number2").removeAttribute("style");
+    }
 $('#addbuttons').click(AddData);
+$('#AddSeason\\[0\\]').click(AddSeason);
 });
 

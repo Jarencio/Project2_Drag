@@ -34,17 +34,17 @@ require("../Function Files/queensfunction.php");
 <div class="queens" popover id="addqueens">
 <input type="text" placeholder="Drag Name" id="DName">
 <div class="Seasons">
-    <input type='number' placeholder='Season No' id='SNo[0]' min='1' max='17'>
-    <?php
-    echo "
-        <select name='' id='SName[0]' onchange='updateSeasonRange(0)'>";
-    foreach ($franchiseData as $row) {
-        echo "<option value='".$row["FranchiseID"]."' data-max='".$row["SeasonMaxNo"]."' data-min='".$row["SeasonMinNo"]."'>".$row["Name"]."</option>";
-    }
-    ?>
+    <input type="number" placeholder="Season No" id="SNo[0]" min="1" max="17">
+    <select name="" id="SName[0]" onchange="updateSeasonRange(0)">
+        <?php
+        foreach ($franchiseData as $row) {
+            echo "<option value='".$row["FranchiseID"]."' data-max='".$row["SeasonMaxNo"]."' data-min='".$row["SeasonMinNo"]."'>".$row["Name"]."</option>";
+        }
+        ?>
     </select>
-    <button type="button">+</button>
+    <button type="button" id="AddSeason[0]">+</button>
 </div>
+
 
 <div class="Seasons" id="Number2" style="display: none;">
     <input type='number' placeholder='Season No' id='SNo[1]' min='1' max='17'>
@@ -80,7 +80,7 @@ require("../Function Files/queensfunction.php");
   </div>
 </div>
 
-<script src="../SFR/JS FILES/queens.js?v=1.1"></script>
+<script src="../SFR/JS FILES/queens.js?v=1.5"></script>
 </form>
 
 </body>
