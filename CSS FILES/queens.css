@@ -1,0 +1,184 @@
+
+.function{
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.function button{
+    background-color: rgb(255, 210, 210);
+    padding: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 0.8em;
+    font-weight: 100;
+    border-color: blanchedalmond;
+}
+
+.function input{
+    width: 400px;
+}
+
+.queencontainer{
+    background: radial-gradient(circle,#FF77B7, #ff91c4, #fd9eca);  
+    border: 1.2px solid black;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.queencontainer img{
+    width: 140px;
+    height: 140px;
+    margin-top: 5px;
+}
+
+.queencontainer h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 0%;
+    font-weight: 550;
+}
+
+.queencontainer h6{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    margin-top: 3px;
+    font-weight: 100;
+    margin-bottom: 0%;
+
+}
+
+.queencontainer button{
+    margin-top: 10px;
+    margin-bottom:10px;
+    font-style: italic;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    padding: 8px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-color: #ff4ea1;
+    border-style: inset;
+    width: 80%;
+    height: 30px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#results {
+    display: flex;
+    flex-wrap: wrap;  /* Allow items to wrap onto the next line */
+    flex-direction: row; /* Default to row for larger screens */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 13px;
+}
+
+:popover-open {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    text-align: center;
+    background-color: #fd9eca;
+    border: 2px solid #ff4ea1; /* Adds borders to cells */
+    padding: 10px;
+    gap: 20px;
+
+ }
+
+
+ #addqueens input{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: #ff4ea1;
+    border-style: inset;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#addqueens button{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    padding: 8px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-color: #ff4ea1;
+    border-style: inset;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#addqueens select{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    padding: 8px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-color: #ff4ea1;
+    border-style: inset;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#addqueens h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    font-style: italic;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
+.buttons{
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#addqueens button:hover{
+    background-color:  #FF77B7;
+}
+
+#addqueens button:active{
+    background-color: #ff479d;
+}
+
+#SNo:out-of-range{
+    border: 2px solid red;
+  background-color: pink;  
+}
+
+.Seasons{
+    display: flex;
+    justify-content:stretch;
+    align-items: center;
+    gap: 10px;
+}
+
+#SNo\[0\],#SNo\[1\],#SNo\[2\]{
+    width: 30%;
+}
+
+#SName\[0\],#SName\[1\],#SName\[2\]{
+    height: 100%;
+    width: 60%;
+}
