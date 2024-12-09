@@ -80,11 +80,10 @@
     flex-wrap: wrap;  /* Allow items to wrap onto the next line */
     flex-direction: row; /* Default to row for larger screens */
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     text-align: center;
     gap: 13px;
 }
-
 :popover-open {
     position: sticky;
     display: flex;
@@ -95,11 +94,10 @@
     border: 2px solid #ff4ea1; /* Adds borders to cells */
     padding: 10px;
     gap: 20px;
-
  }
 
 
- #addqueens input{
+ #addqueens input,#editqueens input{
     font-family:'Courier New', Courier, monospace;
     font-size: 15px;
     font-weight: 300;
@@ -111,7 +109,7 @@
     margin-bottom: 2px;
 }
 
-#addqueens button{
+#addqueens button,#editqueens button{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 15px;
     padding: 8px;
@@ -123,7 +121,7 @@
     margin-bottom: 2px;
 }
 
-#addqueens select{
+#addqueens select,#editqueens select{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 15px;
     padding: 8px;
@@ -135,7 +133,7 @@
     margin-bottom: 2px;
 }
 
-#addqueens h2{
+#addqueens h2,#editqueens h2{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 15px;
     font-weight: 300;
@@ -154,17 +152,12 @@
     gap: 10px;
 }
 
-#addqueens button:hover{
+#addqueens button:hover,#editqueens button:hover{
     background-color:  #FF77B7;
 }
 
-#addqueens button:active{
+#addqueens button:active,#editqueens button:active{
     background-color: #ff479d;
-}
-
-#SNo:out-of-range,#SNo2:out-of-range,#SNo3:out-of-range{
-    border: 2px solid red;
-  background-color: pink;  
 }
 
 .Seasons{
@@ -173,12 +166,16 @@
     align-items: center;
     gap: 10px;
 }
-
-#SNo,#SNo2,#SNo3{
+.SNo {
     width: 30%;
 }
 
-#SName,#SName2,#SName3{
+.SName {
     height: 100%;
     width: 60%;
+}
+
+.SNo:out-of-range {
+    border: 2px solid red;
+    background-color: pink;
 }

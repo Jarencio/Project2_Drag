@@ -1,35 +1,15 @@
-function updateSeasonRange1(div) {
-    console.log("1");
+function updateSeasonRange(selectElement) {
     // Get the selected franchise option
-    var selectedOption = document.getElementById('SName').selectedOptions[0];
+    var selectedOption = selectElement.selectedOptions[0];
 
     // Get the max and min values from the selected option's data attributes
     var maxSeason = selectedOption.getAttribute('data-max');
     var minSeason = selectedOption.getAttribute('data-min');
 
-    console.log(maxSeason);
+    console.log(`Max Season: ${maxSeason}, Min Season: ${minSeason}`);
 
-    // Get the Season No input field
-    var seasonInput = document.getElementById('SNo');
-
-    // Update the min and max values for the input
-    seasonInput.setAttribute('min', minSeason);
-    seasonInput.setAttribute('max', maxSeason);
-}
-
-function updateSeasonRange2(div) {
-    console.log("2");
-    // Get the selected franchise option
-    var selectedOption = document.getElementById('SName2').selectedOptions[0];
-
-    // Get the max and min values from the selected option's data attributes
-    var maxSeason = selectedOption.getAttribute('data-max');
-    var minSeason = selectedOption.getAttribute('data-min');
-
-    console.log(maxSeason);
-
-    // Get the Season No input field
-    var seasonInput = document.getElementById('SNo2');
+    // Get the Season No input field within the same container as the select element
+    var seasonInput = selectElement.closest('.Seasons').querySelector('.SNo');
 
     // Update the min and max values for the input
     seasonInput.setAttribute('min', minSeason);
@@ -37,73 +17,103 @@ function updateSeasonRange2(div) {
 }
 
 
-function updateSeasonRange3(div) {
-    console.log("3");
-    // Get the selected franchise option
-    var selectedOption = document.getElementById('SName3').selectedOptions[0];
+$(document).ready(function () {
+    const updateSeasonRange = (selectElement) => {
+        const selectedOption = selectElement.selectedOptions[0];
+        const maxSeason = selectedOption.getAttribute('data-max');
+        const minSeason = selectedOption.getAttribute('data-min');
 
-    // Get the max and min values from the selected option's data attributes
-    var maxSeason = selectedOption.getAttribute('data-max');
-    var minSeason = selectedOption.getAttribute('data-min');
-
-    console.log(maxSeason);
-
-    // Get the Season No input field
-    var seasonInput = document.getElementById('SNo3');
-
-    // Update the min and max values for the input
-    seasonInput.setAttribute('min', minSeason);
-    seasonInput.setAttribute('max', maxSeason);
-}
-
-$(document).ready(function() {
-
-    const AddData = () => {
-        const DragName = $("#DName").val();
-        const SeasonNo = $("#SNo").val();
-        const selectedOption = $("#SName option:selected"); // Replace 'YourSelectID' with the actual ID of your <select> element
-        const selectedFranchise = selectedOption.val(); // Get the value of the selected option
-        const Add = "Add";
-
-
-        $.ajax({
-            url: "../SFR/Function Files/queensfunction.php",
-            method: "POST",
-            data: {DragName: DragName, SeasonNo: SeasonNo,Add:Add,selectedFranchise:selectedFranchise},
-            success: function (data) {
-                console.log(selectedFranchise);
-                $("#results").html(data);
-            },
-            error: function (error) {
-                console.error("Error fetching accounts:", error);
-            }
-        });
-
-        console.log("WORKING");
-
+        const seasonInput = $(selectElement).siblings('.SNo')[0];
+        $(seasonInput).attr('min', minSeason).attr('max', maxSeason);
     };
 
-    let num = 0;
+    const addSeasonInput = () => {
+        const newSeasonGroup = document.createElement('div');
+        newSeasonGroup.className = 'Seasons';
+        newSeasonGroup.innerHTML = `
+            <input type="number" placeholder="Season No" class="SNo" min="1" max="17">
+            <select class="SName" onchange="updateSeasonRange(this)">
+                ${franchiseData.map(row => `
+                    <option value="${row.FranchiseID}" data-max="${row.SeasonMaxNo}" data-min="${row.SeasonMinNo}">
+                        ${row.Name}
+                    </option>
+                `).join('')}
+            </select>
+            <button type="button" class="RemoveSeason">-</button>
+        `;
 
-    const AddSeason = () => {
-        console.log("WORKING");
+        // Append the new season group to the container
+        document.querySelector('.SeasonsContainer').appendChild(newSeasonGroup);
+    };
 
-        switch (num){
-            case 0:
-                console.log("0");
-                document.getElementById("Number2").removeAttribute("style");
-                break;
-            case 1:
-                console.log("1");
-                document.getElementById("Number3").removeAttribute("style");
-                break;
-            default:
-                console.log("None");
+    const removeSeasonInput = (button) => {
+        button.closest('.Seasons').remove();
+    };
+
+    const addData = () => {
+        const dragName = $('#DName').val();
+        const RecentPromoFile = $('#RecentPromo')[0].files[0];
+        const seasons = [];
+    
+        $('.Seasons').each(function () {
+            const seasonNo = $(this).find('.SNo').val();
+            const selectedFranchise = $(this).find('.SName').val();
+            if (seasonNo && selectedFranchise) {
+                seasons.push({ seasonNo, selectedFranchise });
+            }
+        });
+    
+        const add = "Add";
+    
+        if (RecentPromoFile) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const RecentPromoBase64 = e.target.result;
+    
+                // Make the AJAX call once the image is converted
+                $.ajax({
+                    url: "../SFR/Function Files/queensfunction.php",
+                    method: "POST",
+                    data: {
+                        DragName: dragName,
+                        Seasons: seasons,
+                        Add: add,
+                        RecentPromo: RecentPromoBase64 // Send the Base64 image data
+                    },
+                    success: function (data) {
+                        $("#results").html(data);
+                    },
+                    error: function (error) {
+                        console.error("Error adding data:", error);
+                    }
+                });
+            };
+            reader.readAsDataURL(RecentPromoFile); // Convert image to Base64
+        } else {
+            console.error("No file selected for Recent Promo.");
         }
+    };
 
-        num += 1;
-    }
-$('#addbuttons').click(AddData);
-$('#AddSeason\\[0\\]').click(AddSeason);
+    // Reset button functionality
+$('#resetButton').click(function () {
+    // Clear the drag name input field
+    $('#DName').val('');
+    
+    // Clear the file input (Recent Promo)
+    $('#RecentPromo').val('');
+    
+    // Reset the season inputs
+    $('.Seasons').not(':first').remove(); // Keep the first season input and remove others
+    $('.Seasons .SNo').val(''); // Clear the season number field
+    $('.Seasons .SName').val(''); // Clear the selected franchise field
+    
+});
+    
+    // Event listeners
+    $('.SeasonsContainer').on('click', '.AddSeason', addSeasonInput);
+    $('.SeasonsContainer').on('click', '.RemoveSeason', function () {
+        removeSeasonInput(this);
+    });
+    $('#addbuttons').click(addData);
 });
 
