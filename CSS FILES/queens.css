@@ -162,7 +162,7 @@
     background-color: #ff479d;
 }
 
-#SNo:out-of-range{
+#SNo:out-of-range,#SNo2:out-of-range,#SNo3:out-of-range{
     border: 2px solid red;
   background-color: pink;  
 }
@@ -174,11 +174,11 @@
     gap: 10px;
 }
 
-#SNo\[0\],#SNo\[1\],#SNo\[2\]{
+#SNo,#SNo2,#SNo3{
     width: 30%;
 }
 
-#SName\[0\],#SName\[1\],#SName\[2\]{
+#SName,#SName2,#SName3{
     height: 100%;
     width: 60%;
 }

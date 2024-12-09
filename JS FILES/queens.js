@@ -1,5 +1,5 @@
-function updateSeasonRange(id) {
-    console.log("Sfdgcbc");
+function updateSeasonRange1(div) {
+    console.log("1");
     // Get the selected franchise option
     var selectedOption = document.getElementById('SName').selectedOptions[0];
 
@@ -11,6 +11,45 @@ function updateSeasonRange(id) {
 
     // Get the Season No input field
     var seasonInput = document.getElementById('SNo');
+
+    // Update the min and max values for the input
+    seasonInput.setAttribute('min', minSeason);
+    seasonInput.setAttribute('max', maxSeason);
+}
+
+function updateSeasonRange2(div) {
+    console.log("2");
+    // Get the selected franchise option
+    var selectedOption = document.getElementById('SName2').selectedOptions[0];
+
+    // Get the max and min values from the selected option's data attributes
+    var maxSeason = selectedOption.getAttribute('data-max');
+    var minSeason = selectedOption.getAttribute('data-min');
+
+    console.log(maxSeason);
+
+    // Get the Season No input field
+    var seasonInput = document.getElementById('SNo2');
+
+    // Update the min and max values for the input
+    seasonInput.setAttribute('min', minSeason);
+    seasonInput.setAttribute('max', maxSeason);
+}
+
+
+function updateSeasonRange3(div) {
+    console.log("3");
+    // Get the selected franchise option
+    var selectedOption = document.getElementById('SName3').selectedOptions[0];
+
+    // Get the max and min values from the selected option's data attributes
+    var maxSeason = selectedOption.getAttribute('data-max');
+    var minSeason = selectedOption.getAttribute('data-min');
+
+    console.log(maxSeason);
+
+    // Get the Season No input field
+    var seasonInput = document.getElementById('SNo3');
 
     // Update the min and max values for the input
     seasonInput.setAttribute('min', minSeason);
@@ -44,9 +83,25 @@ $(document).ready(function() {
 
     };
 
+    let num = 0;
+
     const AddSeason = () => {
         console.log("WORKING");
-        document.getElementById("Number2").removeAttribute("style");
+
+        switch (num){
+            case 0:
+                console.log("0");
+                document.getElementById("Number2").removeAttribute("style");
+                break;
+            case 1:
+                console.log("1");
+                document.getElementById("Number3").removeAttribute("style");
+                break;
+            default:
+                console.log("None");
+        }
+
+        num += 1;
     }
 $('#addbuttons').click(AddData);
 $('#AddSeason\\[0\\]').click(AddSeason);
