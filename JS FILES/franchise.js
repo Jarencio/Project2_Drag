@@ -120,5 +120,5 @@ document.querySelector('table').addEventListener('blur', function (event) {
 
     
 $("#Search").keyup(Search);
-    $('#addbuttons').click(AddData);
+$('#addbuttons').click(AddData);
 });
